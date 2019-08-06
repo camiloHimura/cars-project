@@ -6,9 +6,12 @@
   --light-gray: #EDEDED;
   --dark-orange: #D37324;
 
+  --margin: 8px;
   --padding: 8px;
-  --middle-padding: 12px;
+  --big-margin: 24px;
   --big-padding: 24px;
+  --middle-margin: 12px;
+  --middle-padding: 12px;
 
   color: var(--black);
   font-size: 12px;
@@ -19,4 +22,20 @@
   width: 80%;
   margin: 0 auto;
   display: block;
+}
+
+h1, h2, h3{
+  margin: 0px;
+  padding: 0px;
+}
+
+a{
+  outline: none;
+  color: var(--orange);
+  text-decoration: none;
+}
+
+a:hover{
+  color: var(--dark-orange);
+  text-decoration: underline;
 }
