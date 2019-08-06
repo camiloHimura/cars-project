@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.CarsProject{
+  --black : #4A4A4A;
+  --orange : #EA7F28;
+  --light-gray : #EDEDED;
+  --dark-orange : #D37324;
+
+  color: var(--black);
+  font-family: 'Roboto', sans-serif;
+}
+
