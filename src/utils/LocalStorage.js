@@ -1,0 +1,2 @@
+import {storageAvailable} from './validators';
+

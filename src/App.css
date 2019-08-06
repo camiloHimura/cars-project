@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 .CarsProject{
-  --black : #4A4A4A;
-  --orange : #EA7F28;
-  --light-gray : #EDEDED;
-  --dark-orange : #D37324;
+  --black: #4A4A4A;
+  --orange: #EA7F28;
+  --light-gray: #EDEDED;
+  --dark-orange: #D37324;
+
+  --padding: 8px;
+  --middle-padding: 12px;
+  --big-padding: 24px;
 
   color: var(--black);
+  font-size: 12px;
   font-family: 'Roboto', sans-serif;
 }
 
+.container{
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
