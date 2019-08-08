@@ -1,8 +1,11 @@
-import {FILTER_CARS, SORT_CARS} from "../actions/actions-types";
+import {FILTER_CARS, SORT_CARS, CARS_LOADED} from "../actions/actions-types";
 
 export default function carsReducer(state = {cars: []}, action){
-
+  
   switch(action.type){
+    case CARS_LOADED:
+      return Object.assign({}, action.payload);
+
     case FILTER_CARS:
       const {color = false, manufacturer = false} = action.payload;
       const cars = state.cars;
@@ -19,10 +22,10 @@ export default function carsReducer(state = {cars: []}, action){
                         }
                       })
     
-    return {cars: newCards, 
-            totalCarsCount: newCards.length, 
-            totalPageCount: newCards.length
-          }
+      return {cars: newCards, 
+              totalCarsCount: newCards.length, 
+              totalPageCount: newCards.length
+            }
     
     case SORT_CARS:
       const {type = 'ASC'} = action.payload;
@@ -34,8 +37,8 @@ export default function carsReducer(state = {cars: []}, action){
                             return carB.mileage.number - carA.mileage.number;
                           }
                         });
-    
-    return Object.assign({}, state, {cars: sortCards})
+      
+      return Object.assign({}, state, {cars: sortCards})
 
     default: 
        return state;

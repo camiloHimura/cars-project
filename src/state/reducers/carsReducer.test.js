@@ -1,4 +1,4 @@
-import {FILTER_CARS, SORT_CARS} from '../actions/actions-types';
+import {FILTER_CARS, SORT_CARS, CARS_LOADED} from '../actions/actions-types';
 import carsReducer from './carsReducer';
 
 function MockCars(){
@@ -12,6 +12,15 @@ function MockCars(){
     "totalPageCount": 100
   }
 }
+
+describe('load Cars', () =>{
+  it('filter cars by color', () => {
+    let mock = MockCars();
+
+    const newState = carsReducer(undefined, {type: CARS_LOADED, payload: mock});
+    expect(newState).toEqual(mock);
+  })
+})
 
 describe('Filter cars', () => {
   it('return default store', () => {
@@ -53,7 +62,7 @@ describe('Filter cars', () => {
   
 })
 
-describe('', () =>{
+describe('Sort cars', () =>{
   it('sort by mileage ASC', () => {
     let mock = MockCars();
     let [carOne, carTwo, carThree] = mock.cars;

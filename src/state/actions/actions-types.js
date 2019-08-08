@@ -1,4 +1,4 @@
-export const GET_ALL_CARS = "GET_ALL_CARS";
+export const CARS_LOADED = "CARS_LOADED";
 export const FILTER_CARS = "FILTER_CARS";
 export const SORT_CARS = "SORT_CARS";
 

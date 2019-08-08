@@ -1,10 +1,26 @@
 import React from 'react';
+import {connect} from "react-redux";
+
+import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Dropdown from "../../components/Dropdown";
-import Card from "../../components/Card";
 import {Wrapper, ContFilter, ContData, ContInfoFilter} from "./styles";
 
-function Home(){
+/* const mapStateToProps = state => {
+  return {
+    cars: state.carsInfo.cars,
+    totalCarsCount: state.carsInfo.totalCarsCount,
+    totalPageCount: state.carsInfo.totalPageCount,
+  }           
+} */
+
+/* const mapDispachToProps = dispatch => {
+  return {
+      getAllTags: () => dispatch(getAllTags()),
+  }
+} */
+
+export default function Home(){
     return  <Wrapper className="container">
               <ContFilter>
                 <h3>Color</h3>
@@ -39,4 +55,4 @@ function Home(){
             </Wrapper>
 }
 
-export default Home;
+/* export default connect(mapStateToProps, mapDispachToProps)(Home); */
