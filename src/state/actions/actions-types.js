@@ -1,4 +1,6 @@
 export const CARS_LOADED = "CARS_LOADED";
+export const COLORS_LOADED = "COLORS_LOADED";
+export const MANUFACTURER_LOADED = "MANUFACTURER_LOADED";
 export const FILTER_CARS = "FILTER_CARS";
 export const SORT_CARS = "SORT_CARS";
 

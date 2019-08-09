@@ -44,6 +44,7 @@ export const Wrapper = styled.div`
     padding: var(--padding);
     background: transparent;
     text-overflow: ellipsis;
+    text-transform: capitalize;
     border-top: 1px solid var(--light-gray); 
   }
 `;
@@ -79,6 +80,7 @@ export const ContOptions = styled.div`
     padding: var(--padding);
     background: transparent;
     text-overflow: ellipsis;
+    text-transform: capitalize;
     border-top: 1px solid var(--light-gray); 
   }
 

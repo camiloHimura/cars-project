@@ -1,9 +1,7 @@
 const axios = require('axios');
 
 const config = {
-    port: 3001,
-    url:`http://localhost`
-    /* url:`http://localhost:3001` */
+    url:`http://localhost:3001`
 }
 
 const instance = axios.create({

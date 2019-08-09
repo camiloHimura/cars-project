@@ -15,3 +15,16 @@ export const getCars = data => {
       resolve(MockCars());
   })
 };
+
+export const getAllColors = data => {
+  return new Promise((resolve, reject) => {
+      resolve(["white", "Red", "Blue"]);
+  })
+};
+
+export const getAllManufacturers = data => {
+  return new Promise((resolve, reject) => {
+      resolve([{name: "Audi", models: [{name: "100"}, {name: "200"}]},
+              {name: "BMW", models: [{name: "100"}, {name: "200"}]}]);
+  })
+};

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Wrapper, ContOptions} from './styles';
 
 function Dropdown(props){
-  const {defaultValue = "None", onChange} = props;
+  const {defaultValue = "None", onChange, isOptionsObj = false, objKey} = props;
   const options = [ defaultValue, ...props.options]
   let [value, setValue] = useState(defaultValue);
   let [open, setOpen] = useState(false);
@@ -20,24 +20,32 @@ function Dropdown(props){
   function optionSelected(option){
     setOpen(false);
     setValue(option);
-    onChange(option);
+    onChange(option === defaultValue ? false: option);
   }
 
   return  <Wrapper onBlur={hideOptions} className="dropdowm">
             <button onClick={toggleOptions} className={open? 'rotate': ''}>{value}</button>
             {open && <ContOptions>
-                        {options.map((option, key) => 
-                            <button key={`${key}-${option}`} onMouseDown={e => optionSelected(option)}>{option}</button> 
-                          )}
+                        {options.map((option, key) => {
+                            if(isOptionsObj && key !== 0){
+                              return <button key={`${key}-${objKey}`} onMouseDown={e => optionSelected(option[objKey])}>{option[objKey]}</button> 
+                            }
+                            return <button key={`${key}-${option}`} onMouseDown={e => optionSelected(option)}>{option}</button> 
+                          })}
                       </ContOptions>}
           </Wrapper>
 
 }
 
 Dropdown.propTypes = {
+  objKey: PropTypes.string,
+  isOptionsObj: PropTypes.bool,
   defaultValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.string),
+            PropTypes.arrayOf(PropTypes.object),
+          ]).isRequired
 }
 
 
