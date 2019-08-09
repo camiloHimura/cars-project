@@ -1,7 +1,7 @@
 const instance = require("./axios.conf")
 
-export function getCars(){
-  return instance.get("/cars")
+export function getCars(params = ""){
+  return instance.get(`/cars?${params}`)
         .then(info => info.data)
         .catch(catchError);
 }
@@ -21,6 +21,12 @@ export function getAllColors(){
 export function getAllManufacturers(){
   return instance.get("/manufacturers")
         .then(info => info.data.manufacturers)
+        .catch(catchError);
+}
+
+export function getFilterSortPageCars(data){
+  return instance.get(`/cars/${data}`)
+        .then(info => info.data)
         .catch(catchError);
 }
 

@@ -1,4 +1,5 @@
-import { CARS_LOADED, FILTER_CARS, SORT_CARS, COLORS_LOADED, MANUFACTURER_LOADED} from "./actions-types";
+import { CARS_LOADED, FILTER_CARS, SORT_CARS, COLORS_LOADED, MANUFACTURER_LOADED, 
+            FILTERS_SELECTED, PAGE_SELECTED, SORT_SELECTED} from "./actions-types";
 
 export {getAllCars, getColors, getManufacturers} from "./asyncCarsAction";
 
@@ -20,4 +21,16 @@ export function filterCard(payload) {
 
 export function sortCard(payload) {
     return {type: SORT_CARS, payload}
+}
+
+export function filtersSelected(payload) {
+    return {type: FILTERS_SELECTED, payload}
+}
+
+export function pageSelected(payload) {
+    return {type: PAGE_SELECTED, payload}
+}
+
+export function sortSelected(payload) {
+    return {type: SORT_SELECTED, payload}
 }

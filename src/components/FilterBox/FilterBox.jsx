@@ -6,7 +6,7 @@ import Dropdown from '../Dropdown';
 import {ContFilter} from './styles';
 
 function FilterBox(props){
-  const {colors, manufacturers, onChange = () =>{}} = props; 
+  const {colors, manufacturers, onChange = () =>{}, colorSelected, manufacturerSelected} = props; 
 
   const [selectedColor, setselectedColor] = useState(false);
   const [selectedManufacturer, setSelectedManufacturer] = useState(false);
@@ -18,15 +18,18 @@ function FilterBox(props){
   return  <ContFilter>
             <h3>Color</h3>
             <Dropdown 
-              options={colors} 
+              options={colors}
+              selected={colorSelected}
               defaultValue="All Car Colors" 
               onChange={option => setselectedColor(option)}/>
             
             <h3>Manufacturer</h3>
             <Dropdown
+              label="name"
               objKey="name"
               isOptionsObj={true}
               options={manufacturers} 
+              selected={manufacturerSelected}
               defaultValue="All Manufacturers" 
               onChange={option => setSelectedManufacturer(option)}/>
 

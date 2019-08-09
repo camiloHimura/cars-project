@@ -28,3 +28,9 @@ export const getAllManufacturers = data => {
               {name: "BMW", models: [{name: "100"}, {name: "200"}]}]);
   })
 };
+
+export const getFilterSortPageCars = data => {
+  return new Promise((resolve, reject) => {
+      resolve(MockCars());
+  })
+};
