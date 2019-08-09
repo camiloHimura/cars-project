@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 
 import Card from "../../components/Card";
-import Button from "../../components/Button";
 import Dropdown from "../../components/Dropdown";
-import {Wrapper, ContFilter, ContData, ContInfoFilter} from "./styles";
+import FilterBox from "../../components/FilterBox";
+import {Wrapper, ContData, ContInfoFilter} from "./styles";
 
 import {getAllCars, getColors, getManufacturers} from "../../state/actions";
 
@@ -28,7 +28,8 @@ const mapDispachToProps = dispatch => {
 
 export function Home(props){
   console.log(props);
-  const {getAllCars, getColors, getManufacturers, cars, colors, manufacturers} = props;
+  const {getAllCars, getColors, getManufacturers, cars, 
+          colors = [], manufacturers = [], totalCarsCount, totalPageCount} = props;
 
   useEffect(() => {
     getColors();
@@ -37,37 +38,30 @@ export function Home(props){
   }, [])
 
   return  <Wrapper className="container">
-            <ContFilter>
-              <h3>Color</h3>
-              <Dropdown 
-                options={colors} 
-                defaultValue="All Car Colors" 
-                onChange={option => console.log('options selected', option)}/>
-              
-              <h3>Manufacturer</h3>
-              <Dropdown
-                objKey="name"
-                isOptionsObj={true}
-                options={manufacturers} 
-                defaultValue="All Manufacturers" 
-                onChange={option => console.log('options selected', option)}/>
-
-              <Button value={"Filter"}/>
-            </ContFilter>
+            <FilterBox 
+              colors={colors} 
+              manufacturers={manufacturers}
+              onChange={filters => console.log('filters', filters)}
+            />
 
             <ContData>
               <ContInfoFilter>
                 <div>
                   <h2>Available cars</h2>
-                  <h3>Showing 10 of 100 results</h3>
+                  <h3>Showing {totalPageCount} of {totalCarsCount} results</h3>
                 </div>
                 <div>
                   <h3 className="sortTitle">Sort by</h3>
-                  <Dropdown options={["one", "Two", "Three"]} onChange={option => console.log('options selected', option)}/>
+                  <Dropdown
+                    defaultValue="None"
+                    style={{minWidth: "140px"}}
+                    options={["Mileage ASC", "Mileage DESC"]} 
+                    onChange={option => console.log('options selected', option)}/>
                 </div>
+
               </ContInfoFilter>
 
-              {cars.map((car, index) => <Card key={`${car.modelName}${index}`}/>)}
+              {cars.map((car, index) => <Card key={`${car.modelName}${index}`} {...car}/>)}
 
             </ContData>
           </Wrapper>

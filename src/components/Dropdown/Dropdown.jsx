@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Wrapper, ContOptions} from './styles';
 
 function Dropdown(props){
-  const {defaultValue = "None", onChange, isOptionsObj = false, objKey} = props;
+  const {defaultValue = "None", onChange, isOptionsObj = false, objKey , style} = props;
   const options = [ defaultValue, ...props.options]
   let [value, setValue] = useState(defaultValue);
   let [open, setOpen] = useState(false);
@@ -23,7 +23,7 @@ function Dropdown(props){
     onChange(option === defaultValue ? false: option);
   }
 
-  return  <Wrapper onBlur={hideOptions} className="dropdowm">
+  return  <Wrapper onBlur={hideOptions} className="dropdowm" style={style}>
             <button onClick={toggleOptions} className={open? 'rotate': ''}>{value}</button>
             {open && <ContOptions>
                         {options.map((option, key) => {
@@ -38,6 +38,7 @@ function Dropdown(props){
 }
 
 Dropdown.propTypes = {
+  style: PropTypes.object,
   objKey: PropTypes.string,
   isOptionsObj: PropTypes.bool,
   defaultValue: PropTypes.string,

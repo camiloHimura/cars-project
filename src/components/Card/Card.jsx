@@ -1,19 +1,35 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {Wrapper, Content, Img} from './styles';
 
 function Card(props){
-    const {img = "", title = "Title", description = "description", link = "Link"} = props; 
-    let url = 'https://www.telegraph.co.uk/content/dam/news/2017/11/11/Lam2_trans_NvBQzQNjv4Bql2neoDcPjX0ArggwHbAGweof0VMGKnOSfIlF7A9HT4w.jpg?imwidth=1240';
-    return  <Wrapper>
-              <Img>
-                <img src={url}/>
-              </Img>
-              <Content>
-                <h2>{title}</h2>
-                <p>{description}</p>
-                <a href="#">{link}</a>
-              </Content>
-            </Wrapper>
+  const {color, fuelType, manufacturerName, mileage = {number: 0, unit: ""}, 
+          modelName, pictureUrl, stockNumber} = props; 
+
+  return  <Wrapper>
+            <Img>
+              <img src={pictureUrl}/>
+            </Img>
+            <Content>
+              <h2>{manufacturerName} {modelName}</h2>
+              <p>Stock # {stockNumber} - {mileage.number} {mileage.unit} - {fuelType} - {color}</p>
+              <Link to={`/details/${stockNumber}`}>View details</Link>
+            </Content>
+          </Wrapper>
+}
+
+Card.propTypes = {
+  color: PropTypes.string.isRequired,
+  fuelType: PropTypes.string.isRequired,
+  manufacturerName: PropTypes.string.isRequired,
+  mileage: PropTypes.shape({
+      unit: PropTypes.string,
+      number: PropTypes.number
+    }).isRequired,
+  modelName: PropTypes.string.isRequired,
+  pictureUrl: PropTypes.string.isRequired,
+  stockNumber: PropTypes.number.isRequired,
 }
 
 export default Card;

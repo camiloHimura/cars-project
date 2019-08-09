@@ -6,23 +6,6 @@ export const Wrapper = styled.div`
   padding: var(--big-padding);
 `;
 
-export const ContFilter = styled.div`
-  width: 30%;
-  padding: var(--big-padding);
-  margin-right: var(--big-margin);
-  border: 1px solid var(--light-gray);
-
-  h3, .dropdowm{
-    font-weight: normal;
-    margin-bottom: var(--padding)
-  }
-
-  & > button{
-    display: block;
-    margin: var(--big-margin) 0px 0px auto;
-  }
-`;
-
 export const ContData = styled.div`
   width: calc(70% - var(--big-margin)); 
 `;
@@ -43,7 +26,7 @@ export const ContInfoFilter = styled.div`
   }
   
   .sortTitle{
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: var(--margin);
   }
 `;

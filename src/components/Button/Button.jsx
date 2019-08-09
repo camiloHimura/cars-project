@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import {Wrapper} from './styles';
 
 function Button(props){
-    const {value} = props; 
+    const {value, onClick= () =>{}} = props; 
 
-    return  <Wrapper as="button" onClick={event => console.log(event)}>{value}</Wrapper>
+    return  <Wrapper as="button" onClick={onClick}>{value}</Wrapper>
 }
 
 Button.propTypes = {
-    value: PropTypes.string.isRequired
+    onClick: PropTypes.func,
+    value: PropTypes.string.isRequired,
   }
   
   

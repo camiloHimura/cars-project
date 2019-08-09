@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Wrapper = styled.div`
   outline: none;
-  min-width: 100px;
+  min-width: ${({minWidth}) => minWidth? minWidth: '100px'};
   max-width: 300px;
   position: relative;
   border-radius: 2px;
@@ -14,6 +14,12 @@ export const Wrapper = styled.div`
     font-size: 14px;
     cursor: pointer;
     position: relative;
+    padding-right: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
   }
   
   & > button:first-child::before {
