@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
-import Button from "../../components/Button"
-import {Wrapper, Cover, ContInfo, ContFavorites} from "./styles";
+import FavoritesManager from "../../components/FavoritesManager"
+import {Wrapper, Cover, ContInfo} from "./styles";
 import {getCarByStockNumberAction} from "../../state/actions";
 
 const mapStateToProps = state => {
@@ -14,17 +14,16 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispatch => {
   return {
-    getCarByStockNumber: id => dispatch(getCarByStockNumberAction(id)),
+    getCarByStockNumber: (id, history) => dispatch(getCarByStockNumberAction(id, history)),
   }
 }
 
 function Details(props){
-  const { match, car, getCarByStockNumber } = props;
+  const { match, car, getCarByStockNumber, history} = props;
   const {color, fuelType, manufacturerName, mileage = {}, modelName, pictureUrl, stockNumber} = car;
-  console.log("car", car)
 
   useEffect(() => {
-    getCarByStockNumber(match.params.id)
+    getCarByStockNumber(match.params.id, history)
   }, []);
 
   return  <div className="container bodyContainer">
@@ -35,22 +34,19 @@ function Details(props){
                 <h3>Stock # {stockNumber} - {mileage.number} {mileage.unit} - {fuelType} - {color}</h3>
                 <p>This car is currently available and can be delivered as soon as tomorrow morning. Please be aware that delivery times shown in this page are not definitive and may change due to bad weather conditions.</p>
               </ContInfo>
-              <ContFavorites>
-                <p>If you like this car, click the button and save it in your collection of favourite items.</p>
-                <Button value={"Save"} onClick={info => console.log("save")}/> 
-              </ContFavorites>
+              <FavoritesManager id={match.params.id}/>
             </Wrapper>
           </div>
 }
 
 Details.propTypes = {
-    car: PropTypes.object.isRequired,
-    getCarByStockNumber: PropTypes.func.isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string.isRequired, 
-      }), 
-    }).isRequired, 
+  car: PropTypes.object.isRequired,
+  getCarByStockNumber: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired, 
+    }), 
+  }).isRequired, 
 }
 
 export default connect(mapStateToProps, mapDispachToProps)(Details);

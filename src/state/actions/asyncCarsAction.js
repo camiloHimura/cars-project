@@ -1,6 +1,7 @@
 import {getCars, getAllColors, getAllManufacturers, getCarByStockNumber} from "../../utils/ServerRequest";
-import {carsLoaded, colorsLoaded, manufacturersLoaded, carsByStockNumberLoaded} from "./index.js"
+import {carsLoaded, colorsLoaded, manufacturersLoaded, carsByStockNumberLoaded, carsByStockNumberIsFavorite} from "./index.js"
 import {propertiesToString} from "../../utils/general";
+import {searchStorageId, saveStorageId, removeStorageId} from "../../utils/LocalStorage";
 
 export function getAllCars(filterSelected = {}, sortSelected = {}, pageSelected){
   return async function(dispatch){
@@ -38,13 +39,43 @@ export function getManufacturers(){
   }
 }
 
-export function getCarByStockNumberAction(stockNumber){
+export function getCarByStockNumberAction(stockNumber, history){
   return async function(dispatch){
     try{
         let car = await getCarByStockNumber(stockNumber);
-        dispatch(carsByStockNumberLoaded(car))
+        if(car == null){
+          history.replace("/notFound");
+        }else{
+          dispatch(carsByStockNumberLoaded(car))
+        }
     }catch(error){
         console.error("error", error)
+    }
+  }
+}
+
+export function searchFavorite(id){
+  return async function(dispatch){
+    if(searchStorageId(id)){
+      dispatch(carsByStockNumberIsFavorite(true))
+    }else{
+      dispatch(carsByStockNumberIsFavorite(false))
+    }
+  }
+}
+
+export function saveFavorite(id){
+  return async function(dispatch){
+    if(saveStorageId(id)){
+      dispatch(carsByStockNumberIsFavorite(true))
+    }
+  }
+}
+
+export function removeFavorite(id){
+  return async function(dispatch){
+    if(removeStorageId(id)){
+      dispatch(carsByStockNumberIsFavorite(false))
     }
   }
 }

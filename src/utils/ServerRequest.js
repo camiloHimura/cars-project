@@ -9,7 +9,11 @@ export function getCars(params = ""){
 export function getCarByStockNumber(stockNumber){
   return instance.get(`/cars/${stockNumber}`)
         .then(info => info.data.car)
-        .catch(catchError);
+        .catch(error => {
+          if(error.response.status === 404){
+            return null;
+          }
+        });
 }
 
 export function getAllColors(){

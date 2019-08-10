@@ -6,6 +6,7 @@ export const Wrapper = styled.button`
   height: 32px;
   border: none;
   outline: none;
+  cursor: pointer;
   border-radius: 2px;
   background: var(--orange);
 
