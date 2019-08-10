@@ -35,11 +35,11 @@ function Home(props){
           sortSelected, filterSelected, colors = [], manufacturers = [], totalCarsCount} = props;
 
   useEffect(() => {
-    getColors();
-    getManufacturers();
+    if(colors.length == 0){getColors()};
+    if(manufacturers.length == 0){getManufacturers();};
   }, [])
 
-  return  <Wrapper className="container">
+  return  <Wrapper className="container bodyContainer">
             <FilterBox 
               colors={colors}
               manufacturers={manufacturers}

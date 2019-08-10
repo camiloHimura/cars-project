@@ -1,18 +1,19 @@
 import React from 'react';
-import "./Header.css"
+import {Link} from "react-router-dom";
 
 import Nav from '../Nav';
 import Logo from '../Logo';
+import {Wrapper} from "./styles";
 
 function Header(){
   let navItems = ['Purchase', 'My Orders', 'Sell'];
 
-  return  <header>
+  return  <Wrapper as="header">
             <div className="container">
-              <Logo/>
+              <Link to="/"><Logo/></Link>
               <Nav items={navItems}/>
             </div>
-          </header>
+          </Wrapper>
 }
 
 export default Header;

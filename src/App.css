@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+div{
+  box-sizing: border-box;
+}
+
 .CarsProject{
   --black: #4A4A4A;
   --orange: #EA7F28;
@@ -19,12 +23,23 @@
 }
 
 .container{
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: block;
 }
 
-h1, h2, h3{
+@media only screen and (min-width: 1024px) {
+  .container{
+    width: 80%;
+  }
+}
+
+.bodyContainer{
+  /* 91 header - 63 footer todo - better way*/ 
+  min-height: calc(100vh - 91px - 63px);
+}
+
+h1, h2, h3, p{
   margin: 0px;
   padding: 0px;
   font-weight: normal;

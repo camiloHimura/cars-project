@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 
 export const Img = styled.div`
   width: 80px;
+  height: 80px;
   margin: var(--margin);
   background: var(--black);
 
