@@ -1,18 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {Wrapper, Cover, ContInfo, ContFavorites} from "./styles";
+import {connect} from "react-redux";
+
 import Button from "../../components/Button"
+import {Wrapper, Cover, ContInfo, ContFavorites} from "./styles";
+import {getCarByStockNumberAction} from "../../state/actions";
+
+const mapStateToProps = state => {
+  return {
+    car: state.carByStockNumber,
+  }           
+}
+
+const mapDispachToProps = dispatch => {
+  return {
+    getCarByStockNumber: id => dispatch(getCarByStockNumberAction(id)),
+  }
+}
 
 function Details(props){
-  const { match } = props;
-  console.log("id", match.params.id);
-  
+  const { match, car, getCarByStockNumber } = props;
+  const {color, fuelType, manufacturerName, mileage = {}, modelName, pictureUrl, stockNumber} = car;
+  console.log("car", car)
+
+  useEffect(() => {
+    getCarByStockNumber(match.params.id)
+  }, []);
+
   return  <div className="container bodyContainer">
             <Cover/>
             <Wrapper>
               <ContInfo>
-                <h2>Chrysler Crossfire</h2>
-                <h3>Stock # 61184 - 152.263 KM - Petrol - Yellow</h3>
+                <h2>{manufacturerName} {modelName}</h2>
+                <h3>Stock # {stockNumber} - {mileage.number} {mileage.unit} - {fuelType} - {color}</h3>
                 <p>This car is currently available and can be delivered as soon as tomorrow morning. Please be aware that delivery times shown in this page are not definitive and may change due to bad weather conditions.</p>
               </ContInfo>
               <ContFavorites>
@@ -24,6 +44,8 @@ function Details(props){
 }
 
 Details.propTypes = {
+    car: PropTypes.object.isRequired,
+    getCarByStockNumber: PropTypes.func.isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({
         id: PropTypes.string.isRequired, 
@@ -31,4 +53,4 @@ Details.propTypes = {
     }).isRequired, 
 }
 
-export default Details;
+export default connect(mapStateToProps, mapDispachToProps)(Details);

@@ -1,7 +1,7 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {getAllCars, getColors, getManufacturers, filterSortPage} from './asyncCarsAction';
-import {CARS_LOADED, COLORS_LOADED, MANUFACTURER_LOADED} from './actions-types';
+import {getAllCars, getColors, getManufacturers, getCarByStockNumberAction} from './asyncCarsAction';
+import {CARS_LOADED, COLORS_LOADED, MANUFACTURER_LOADED, CAR_BY_STOCK_NUMBER_LOADED} from './actions-types';
 
 jest.mock('../../utils/ServerRequest'); 
 
@@ -43,12 +43,12 @@ fdescribe('async actions', () => {
         expect(firstAction.type).toBe(MANUFACTURER_LOADED);
       });
   })
-
-  it('filterSortPage', () => {
-    return store.dispatch(filterSortPage({}))
+  
+  it('getCarByStockNumberAction', () => {
+    return store.dispatch(getCarByStockNumberAction())
       .then(() => {
         const [firstAction] = store.getActions();
-        expect(firstAction.type).toBe(CARS_LOADED);
+        expect(firstAction.type).toBe(CAR_BY_STOCK_NUMBER_LOADED);
       });
   })
 

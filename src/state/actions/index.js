@@ -1,10 +1,14 @@
 import { CARS_LOADED, FILTER_CARS, SORT_CARS, COLORS_LOADED, MANUFACTURER_LOADED, 
-            FILTERS_SELECTED, PAGE_SELECTED, SORT_SELECTED} from "./actions-types";
+            FILTERS_SELECTED, PAGE_SELECTED, SORT_SELECTED, CAR_BY_STOCK_NUMBER_LOADED} from "./actions-types";
 
-export {getAllCars, getColors, getManufacturers} from "./asyncCarsAction";
+export {getAllCars, getColors, getManufacturers, getCarByStockNumberAction} from "./asyncCarsAction";
 
 export function carsLoaded(payload) {
     return {type: CARS_LOADED, payload}
+}
+
+export function carsByStockNumberLoaded(payload) {
+    return {type: CAR_BY_STOCK_NUMBER_LOADED, payload}
 }
 
 export function colorsLoaded(payload) {

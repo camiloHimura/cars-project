@@ -1,5 +1,5 @@
-import {getCars, getAllColors, getAllManufacturers, getFilterSortPageCars} from "../../utils/ServerRequest";
-import {carsLoaded, colorsLoaded, manufacturersLoaded} from "./index.js"
+import {getCars, getAllColors, getAllManufacturers, getCarByStockNumber} from "../../utils/ServerRequest";
+import {carsLoaded, colorsLoaded, manufacturersLoaded, carsByStockNumberLoaded} from "./index.js"
 import {propertiesToString} from "../../utils/general";
 
 export function getAllCars(filterSelected = {}, sortSelected = {}, pageSelected){
@@ -38,13 +38,11 @@ export function getManufacturers(){
   }
 }
 
-export function filterSortPage(data){
+export function getCarByStockNumberAction(stockNumber){
   return async function(dispatch){
-    const {manufacturer, color, sort, page} = data;
-
     try{
-        let cars = await getFilterSortPageCars(data);
-        dispatch(carsLoaded(cars))
+        let car = await getCarByStockNumber(stockNumber);
+        dispatch(carsByStockNumberLoaded(car))
     }catch(error){
         console.error("error", error)
     }

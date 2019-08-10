@@ -6,9 +6,9 @@ export function getCars(params = ""){
         .catch(catchError);
 }
 
-export function getCarsStockNumber(stockNumber){
+export function getCarByStockNumber(stockNumber){
   return instance.get(`/cars/${stockNumber}`)
-        .then(info => info.data)
+        .then(info => info.data.car)
         .catch(catchError);
 }
 
@@ -21,12 +21,6 @@ export function getAllColors(){
 export function getAllManufacturers(){
   return instance.get("/manufacturers")
         .then(info => info.data.manufacturers)
-        .catch(catchError);
-}
-
-export function getFilterSortPageCars(data){
-  return instance.get(`/cars/${data}`)
-        .then(info => info.data)
         .catch(catchError);
 }
 

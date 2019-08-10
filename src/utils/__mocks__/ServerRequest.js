@@ -22,6 +22,12 @@ export const getAllColors = data => {
   })
 };
 
+export const getCarByStockNumber = data => {
+  return new Promise((resolve, reject) => {
+      resolve({"car":{"stockNumber":10001,"manufacturerName":"BMW","modelName":"3er","color":"yellow","mileage":{"number":133886,"unit":"km"},"fuelType":"Petrol","pictureUrl":"http://localhost:3001/car.svg"}});
+  })
+};
+
 export const getAllManufacturers = data => {
   return new Promise((resolve, reject) => {
       resolve([{name: "Audi", models: [{name: "100"}, {name: "200"}]},
@@ -29,8 +35,3 @@ export const getAllManufacturers = data => {
   })
 };
 
-export const getFilterSortPageCars = data => {
-  return new Promise((resolve, reject) => {
-      resolve(MockCars());
-  })
-};
