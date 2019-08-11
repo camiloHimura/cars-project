@@ -1,9 +1,9 @@
 import {FILTER_CARS, SORT_CARS, CARS_LOADED} from "../actions/actions-types";
 
-export default function carsReducer(state = {cars: []}, action){
+export default function carsReducer(state = {cars: [], loaded: false}, action){
   switch(action.type){
     case CARS_LOADED:
-      return Object.assign({}, action.payload);
+      return Object.assign({}, action.payload, {loaded: true});
 
     case FILTER_CARS:
       const {color = false, manufacturer = false} = action.payload;

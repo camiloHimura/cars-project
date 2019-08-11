@@ -2,13 +2,15 @@ import React, {Fragment, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import Card from "../../components/Card";
+import LoadingCard from "../../components/LoadingCard";
 import {getAllCars, setPage} from "../../state/actions";
 import Pagination from "../../components/Pagination";
-const ITEMS_PER_PAGE = 10;
+import {ITEMS_PER_PAGE} from "../../const";
 
 const mapStateToProps = state => {
   return {
     cars: state.carsInfo.cars,
+    carsLoaded: state.carsInfo.loaded,
     sortSelected: state.sortSelected,
     pageSelected: state.pageSelected,
     filterSelected: state.filterSelected,
@@ -18,13 +20,13 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispatch => {
   return {
-    getAllCars: (filterSelected, sortSelected, pageSelected) => dispatch(getAllCars(filterSelected, sortSelected, pageSelected)),
     setPage: num => dispatch(setPage(num)),
+    getAllCars: (filterSelected, sortSelected, pageSelected) => dispatch(getAllCars(filterSelected, sortSelected, pageSelected)),
   }
 }
 
 function CarsContainer(props){
-  const {cars, getAllCars, sortSelected, pageSelected, setPage, filterSelected, totalCarsCount} = props; 
+  const {cars = [], getAllCars, sortSelected, pageSelected, setPage, filterSelected, totalCarsCount, carsLoaded} = props; 
 
   useEffect(() => {
     getAllCars(filterSelected, sortSelected, pageSelected);
@@ -32,7 +34,9 @@ function CarsContainer(props){
 
 
   return  <Fragment>
-            {cars.map((car, index) => <Card key={`${car.modelName}${index}`} {...car}/>)}
+            {!carsLoaded && Array.from({length: ITEMS_PER_PAGE}, (info, index) => <LoadingCard key={`${index}-loading`}/>)}
+            {carsLoaded && cars.map((car, index) => <Card key={`${car.modelName}${index}`} {...car}/>)}
+
             <Pagination 
               setPage={setPage}
               pageSelected={pageSelected} 

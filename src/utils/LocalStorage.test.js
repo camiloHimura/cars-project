@@ -39,6 +39,6 @@ describe("LocalStorage Action test", () =>{
     saveStorageId(4);
     saveStorageId(5);
     removeStorageId(2)
-    expect(getItemsParse(STORAGE_FAVORITES)).toStrictEqual([1,3, 4, 5]);
+    expect(getItemsParse(STORAGE_FAVORITES)).toStrictEqual([1,3,4,5]);
   })
 })

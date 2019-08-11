@@ -9,7 +9,8 @@ function MockCars(){
       {"stockNumber":10068,"manufacturerName":"Mercedes-Benz","modelName":"SLS AMG","color":"red","mileage":{"number":132381,"unit":"km"}}
     ],
     "totalCarsCount": 1000,
-    "totalPageCount": 100
+    "totalPageCount": 100,
+    "loaded": true
   }
 }
 
@@ -25,7 +26,7 @@ describe('load Cars', () =>{
 describe('Filter cars', () => {
   it('return default store', () => {
     const newState = carsReducer(undefined, {});
-    expect(newState).toEqual({cars: []});
+    expect(newState).toEqual({cars: [], loaded: false});
   })
   
   it('return all the cars', () => {

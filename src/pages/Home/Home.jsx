@@ -29,7 +29,6 @@ const mapDispachToProps = dispatch => {
 }
 
 function Home(props){
-  /* console.log("Home", props); */
   const { getColors, getManufacturers, setFiltersSelected, setSortSelected, cars, 
           sortSelected, filterSelected, colors = [], manufacturers = [], totalCarsCount} = props;
 
@@ -56,7 +55,7 @@ function Home(props){
               />
               <CarsContainer/>
             
-              </ContData>
+            </ContData>
           </Wrapper>
 }
 
