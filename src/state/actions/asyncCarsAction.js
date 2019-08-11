@@ -43,7 +43,7 @@ export function getCarByStockNumberAction(stockNumber, history){
   return async function(dispatch){
     try{
         let car = await getCarByStockNumber(stockNumber);
-        if(car == null){
+        if(car === null){
           history.replace("/notFound");
         }else{
           dispatch(carsByStockNumberLoaded(car))

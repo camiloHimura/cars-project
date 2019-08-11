@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "./Nav.css"
+import {Wrapper} from "./styles";
 
 function Nav(props){
 
-    return  <nav>
+    return  <Wrapper as="nav">
               {props.items.map(name => 
-                      <div key={name}>
-                        {name}    
-                      </div>)}
-            </nav>
+                      <div key={name}> {name} </div>)}
+            </Wrapper>
 
 }
 

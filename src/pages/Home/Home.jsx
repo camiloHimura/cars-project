@@ -7,7 +7,7 @@ import ContInfoFilter from "../../components/ContInfoFilter";
 
 import {Wrapper, ContData} from "./styles";
 
-import {getColors, getManufacturers, filtersSelected} from "../../state/actions";
+import {getColors, getManufacturers, filtersSelected, sortSelected} from "../../state/actions";
 
 const mapStateToProps = state => {
   return {
@@ -23,6 +23,7 @@ const mapDispachToProps = dispatch => {
   return {
     getColors: () => dispatch(getColors()),
     getManufacturers: () => dispatch(getManufacturers()),
+    setSortSelected: info => dispatch(sortSelected(info)),
     setFiltersSelected: filters => dispatch(filtersSelected(filters)),
   }
 }
@@ -33,8 +34,8 @@ function Home(props){
           sortSelected, filterSelected, colors = [], manufacturers = [], totalCarsCount} = props;
 
   useEffect(() => {
-    if(colors.length == 0){getColors()};
-    if(manufacturers.length == 0){getManufacturers();};
+    if(colors.length === 0){getColors()};
+    if(manufacturers.length === 0){getManufacturers();};
   }, [])
 
   return  <Wrapper className="container bodyContainer">

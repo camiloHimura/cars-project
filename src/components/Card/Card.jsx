@@ -9,7 +9,7 @@ function Card(props){
 
   return  <Wrapper>
             <Img>
-              <img src={pictureUrl}/>
+              <img alt="" src={pictureUrl}/>
             </Img>
             <Content>
               <h2>{manufacturerName} {modelName}</h2>

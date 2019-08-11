@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {Wrapper} from './styles';
-const ITEMS_PER_PAGE = 10;
+
 function Pagination(props){
-  console.log('---- Pagination ----', props)
-  const {pageSelected, totalCarsCount, setPage} = props; 
-  let totalPages = Math.ceil(totalCarsCount / ITEMS_PER_PAGE);
-  let isFirst = pageSelected == 1;
-  let isLast = pageSelected == totalPages;
+  const {pageSelected, totalCarsCount, setPage, itemsPerPage} = props; 
+
+  let totalPages = Math.ceil(totalCarsCount / itemsPerPage);
+  let isFirst = pageSelected === 1;
+  let isLast = pageSelected === totalPages;
 
   function nextPage(){
     setPage(pageSelected + 1);
@@ -37,6 +37,7 @@ function Pagination(props){
 
 Pagination.propTypes = {
     setPage: PropTypes.func,
+    itemsPerPage: PropTypes.number,
     pageSelected: PropTypes.number,
     totalCarsCount: PropTypes.number
   }

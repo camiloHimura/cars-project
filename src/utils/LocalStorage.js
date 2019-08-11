@@ -3,7 +3,7 @@ export const STORAGE_FAVORITES = "autoOneFavorites"
 
 export function searchStorageId(id){
   let favorites = getItemsParse(STORAGE_FAVORITES);
-  if(favorites == null){
+  if(favorites === null){
     return null;
   }
 
@@ -12,7 +12,7 @@ export function searchStorageId(id){
 
 export function saveStorageId(id){
   let favorites = getItemsParse(STORAGE_FAVORITES);
-  if(favorites == null){
+  if(favorites === null){
     setItem(STORAGE_FAVORITES, JSON.stringify([id]));
     return true
   }
@@ -27,12 +27,12 @@ export function saveStorageId(id){
 
 export function removeStorageId(id){
   let favorites = getItemsParse(STORAGE_FAVORITES);
-  if(favorites == null){
+  if(favorites === null){
     return null;
   }
   
   if(isAlreadySaved(favorites, id)){
-    let newFavorites = favorites.filter(intertnalId => intertnalId != id);
+    let newFavorites = favorites.filter(intertnalId => intertnalId !== id);
     let stringFavrites = JSON.stringify(newFavorites);
     setItem(STORAGE_FAVORITES, stringFavrites);
   }
@@ -49,7 +49,7 @@ export function setItem(key, value){
   if(storageAvailable()){
     localStorage.setItem(key, value)
   }else{
-    throw "Local Storage Unavailable"
+    throw new Error("Local Storage Unavailable");
   }
 }
 
@@ -57,12 +57,12 @@ export function getItem(key){
   if(storageAvailable()){
     return localStorage.getItem(key)
   }else{
-    throw "Local Storage Unavailable"
+    throw new Error("Local Storage Unavailable");
   }
 }
 
 function isAlreadySaved(array, id) {
-  return array.some(internalId => internalId == id);
+  return array.some(internalId => internalId === id);
 }
 
 

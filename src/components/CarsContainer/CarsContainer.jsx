@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import Card from "../../components/Card";
 import {getAllCars, setPage} from "../../state/actions";
 import Pagination from "../../components/Pagination";
+const ITEMS_PER_PAGE = 10;
 
 const mapStateToProps = state => {
   return {
@@ -35,6 +36,7 @@ function CarsContainer(props){
             <Pagination 
               setPage={setPage}
               pageSelected={pageSelected} 
+              itemsPerPage={ITEMS_PER_PAGE}
               totalCarsCount={totalCarsCount}
             />
           </Fragment>

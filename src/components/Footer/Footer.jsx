@@ -1,8 +1,8 @@
 import React from 'react';
-import "./Footer.css"
+import {Wrapper} from "./styles";
 
 function Footer(){
-  return  <footer>© AUTO1 Group 2018</footer>
+  return  <Wrapper as="footer">© AUTO1 Group 2018</Wrapper>
 }
 
 export default Footer;

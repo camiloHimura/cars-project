@@ -19,6 +19,7 @@ export default function carsReducer(state = {cars: []}, action){
                         if(manufacturer){
                           return car.manufacturerName === manufacturer;
                         }
+                        return car;
                       })
     
       return {cars: newCards, 
