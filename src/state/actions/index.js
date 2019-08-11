@@ -1,5 +1,5 @@
 import { CARS_LOADED, FILTER_CARS, SORT_CARS, COLORS_LOADED, MANUFACTURER_LOADED, CAR_BY_STOCK_NUMBER_ISFAVORITE,
-            FILTERS_SELECTED, PAGE_SELECTED, SORT_SELECTED, CAR_BY_STOCK_NUMBER_LOADED} from "./actions-types";
+            FILTERS_SELECTED, PAGE_SELECTED, SORT_SELECTED, CAR_BY_STOCK_NUMBER_LOADED, SET_PAGE_SELECTED} from "./actions-types";
 
 export {getAllCars, getColors, getManufacturers, getCarByStockNumberAction,
         searchFavorite, saveFavorite, removeFavorite} from "./asyncCarsAction";
@@ -36,8 +36,12 @@ export function filtersSelected(payload) {
   return {type: FILTERS_SELECTED, payload}
 }
 
-export function pageSelected(payload) {
-  return {type: PAGE_SELECTED, payload}
+export function pageSelected() {
+  return {type: PAGE_SELECTED}
+}
+
+export function setPage(payload) {
+  return {type: SET_PAGE_SELECTED, payload}
 }
 
 export function sortSelected(payload) {

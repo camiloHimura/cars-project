@@ -47,6 +47,7 @@ h1, h2, h3, p{
 
 a{
   outline: none;
+  cursor: pointer;
   color: var(--orange);
   text-decoration: none;
 }
@@ -54,4 +55,8 @@ a{
 a:hover{
   color: var(--dark-orange);
   text-decoration: underline;
+}
+
+a::selection{
+  background: transparent;
 }

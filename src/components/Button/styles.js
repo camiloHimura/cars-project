@@ -10,7 +10,7 @@ export const Wrapper = styled.button`
   border-radius: 2px;
   background: var(--orange);
 
-  :hover{
+  :active{
     background: var(--dark-orange);
   }
 `;
