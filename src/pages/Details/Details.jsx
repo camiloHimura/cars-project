@@ -6,17 +6,13 @@ import FavoritesManager from "../../components/FavoritesManager"
 import {Wrapper, Cover, ContInfo} from "./styles";
 import {getCarByStockNumberAction} from "../../state/actions";
 
-const mapStateToProps = state => {
-  return {
-    car: state.carByStockNumber,
-  }           
-}
+const mapStateToProps = state => ({
+                          car: state.carByStockNumber,
+                        })
 
-const mapDispachToProps = dispatch => {
-  return {
-    getCarByStockNumber: (id, history) => dispatch(getCarByStockNumberAction(id, history)),
-  }
-}
+const mapDispachToProps = dispatch => ({
+                            getCarByStockNumber: (id, history) => dispatch(getCarByStockNumberAction(id, history)),
+                          })
 
 function Details(props){
   const { match, car, getCarByStockNumber, history} = props;
